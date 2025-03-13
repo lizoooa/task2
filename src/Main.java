@@ -1,17 +1,49 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        final double PRICE = 40.0;
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Miasto: ");
+        String city = scanner.nextLine();
+
+        System.out.print("wiek: ");
+        int wiek = scanner.nextInt();
+
+        System.out.print("mieszkasz w Warszawie ? (tak/nie): ");
+        scanner.nextLine();
+        String mieszkaniecWarszawy = scanner.nextLine();
+
+        System.out.print("dzisiaj czwartek? (tak/nie): ");
+        String czwartek = scanner.nextLine();
+
+        double rabat = 0.0;
+
+        if (wiek < 10) {
+            rabat = 100.0;
+        } else if (wiek >= 10 && wiek <= 18) {
+            rabat = 50.0;
         }
+
+        if (mieszkaniecWarszawy.equalsIgnoreCase("yes")) {
+            rabat += 10.0;
+        }
+
+        if (czwartek.equalsIgnoreCase("yes")) {
+            rabat = 100.0;
+        }
+
+        double finalPrice = PRICE * (1 - rabat / 100);
+
+        String rabat1 = (rabat == 100.0) ? "100%" : rabat + "%";
+        String ticketPriceText = (rabat == 100.0) ? "0 PLN" : finalPrice + " PLN";
+
+        System.out.println("Data: " + city + ", " + wiek + " ma lat, dzień powszedni");
+        System.out.println("prace: " + ticketPriceText);
+        System.out.println("rabat: " +  rabat);
     }
 }
